@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface FilmRepository extends CrudRepository<Film, Integer> {
     List<Film> findAllByArchived(boolean isArchived);
-    List<Film> findLikeNameStartingWith(String name);
+    List<Film> findByName(String name);
 }

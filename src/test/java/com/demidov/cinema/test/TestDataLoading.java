@@ -19,14 +19,16 @@ public class TestDataLoading {
         loadFilms();
     }
 
+
     public void loadFilms() {
-        List<Film> films = filmRepository.findLikeNameStartingWith("filmFirst");
+        List<Film> films = filmRepository.findByName("filmFirst");
         if (films.isEmpty()) {
             Film filmFirst = new Film();
             filmFirst.setName("filmFirst");
             filmFirst.setBasePrice(8000);
             filmFirst.setDurationMinuts(100);
             filmRepository.save(filmFirst);
+
         }
     }
 }

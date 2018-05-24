@@ -11,12 +11,9 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sessions_id_seq")
     private Integer id;
 
-    @JoinColumn(name = "film_id")
-    @ManyToOne(targetEntity = Film.class)
+
     private Film film;
 
-    @ManyToOne
-    @JoinColumn(name = "hall_id")
     private Hall hall;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -33,6 +30,8 @@ public class Session {
         this.id = id;
     }
 
+    @JoinColumn(name = "film_id")
+    @ManyToOne
     public Film getFilm() {
         return film;
     }
@@ -41,6 +40,8 @@ public class Session {
         this.film = film;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "hall_id")
     public Hall getHall() {
         return hall;
     }
