@@ -11,5 +11,8 @@
         <class>
             com.demidov.cinema.model.entities.Film
         </class>
+        <class>
+            com.demidov.cinema.model.entities.Hall
+        </class>
     </persistence-unit>
 </persistence>

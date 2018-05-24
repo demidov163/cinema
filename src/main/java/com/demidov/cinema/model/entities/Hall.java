@@ -1,20 +1,11 @@
 package com.demidov.cinema.model.entities;
 
-import com.demidov.cinema.model.entities.types.PlaceMatrixType;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "halls")
-@TypeDefs({
-    @TypeDef(
-        name = "place-matrix",
-        typeClass = PlaceMatrixType.class
-)
-})
 public class Hall {
     @Id
     @SequenceGenerator(name = "halls_id_seq", sequenceName = "halls_id_seq")
@@ -23,14 +14,15 @@ public class Hall {
 
     private String name;
 
-    private Double placecoeff;
+    private Float placecoeff;
 
-    @Type( type = "place-matrix" )
+    @Type( type = "com.demidov.cinema.model.entities.types.IntMatrixArrayType" )
     @Column(
-        name = "places"
-        //columnDefinition = "text[]"
+        name = "places",
+        columnDefinition = "integer[][]"
     )
-    private Place[][] places;
+
+    private Integer[][] places;
 
     public Integer getId() {
         return id;
@@ -48,19 +40,19 @@ public class Hall {
         this.name = name;
     }
 
-    public Double getPlacecoeff() {
+    public Float getPlacecoeff() {
         return placecoeff;
     }
 
-    public void setPlacecoeff(Double placecoeff) {
+    public void setPlacecoeff(Float placecoeff) {
         this.placecoeff = placecoeff;
     }
 
-    public Place[][] getPlaces() {
+    public Integer[][] getPlaces() {
         return places;
     }
 
-    public void setPlaces(Place[][] places) {
+    public void setPlaces(Integer[][] places) {
         this.places = places;
     }
 }
