@@ -1,7 +1,7 @@
 drop table sessions;
 drop table films;
 drop table halls;
-drop type place;
+--drop type place;
 
 
 
@@ -12,13 +12,13 @@ create table films(
  baseprice integer
 );
 
-create type place as (c integer, r integer, vip boolean);
+--create type place as (c integer, r integer, vip boolean);
 
 create table halls(
 id serial primary key,
 name varchar(100),
-placecoeff decimal,
-places place[][]
+placecoeff real,
+places integer[][]
 );
 
 create table sessions(
