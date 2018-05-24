@@ -7,9 +7,10 @@ drop table halls;
 
 create table films(
  id serial primary key,
- duration integer,
+ duration_minuts integer,
  name varchar(100),
- baseprice integer
+ baseprice integer,
+ archived boolean default false
 );
 
 --create type place as (c integer, r integer, vip boolean);
@@ -23,8 +24,8 @@ places integer[][]
 
 create table sessions(
 id serial primary key,
-film integer references films(id),
+film_id integer references films(id),
 date timestamp,
-hall integer references halls(id),
+hall_id integer references halls(id),
 price integer check(price > 0)
 );

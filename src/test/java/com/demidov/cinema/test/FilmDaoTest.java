@@ -3,6 +3,7 @@ package com.demidov.cinema.test;
 import com.demidov.cinema.model.entities.Film;
 import com.demidov.cinema.model.repositories.FilmRepository;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,15 @@ import java.util.Date;
 public class FilmDaoTest {
     @Autowired
     private FilmRepository filmRepository;
+
+    @Autowired
+    private TestDataLoading testDataLoading;
+
+    @Before
+    public void init() {
+        testDataLoading.loadAll();
+    }
+
 
     @Test
     @Transactional

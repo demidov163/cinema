@@ -4,6 +4,7 @@ package com.demidov.cinema.test;
 import com.demidov.cinema.model.entities.Hall;
 import com.demidov.cinema.model.repositories.HallRepository;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,14 @@ public class HallDaoTest {
 
     @Autowired
     private HallRepository hallRepository;
+
+    @Autowired
+    private TestDataLoading testDataLoading;
+
+    @Before
+    public void init() {
+         testDataLoading.loadAll();
+    }
 
     @Test
     @Transactional

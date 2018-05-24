@@ -11,12 +11,15 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "films_id_seq")
     private int id;
 
-    private int duration;
+    //minutes
+    @Column(name = "duration_minuts")
+    private int durationMinuts;
 
     private String name;
 
     private int basePrice;
 
+    private boolean archived;
 
     public int getId() {
         return id;
@@ -26,12 +29,12 @@ public class Film {
         this.id = id;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getDurationMinuts() {
+        return durationMinuts;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setDurationMinuts(int duration) {
+        this.durationMinuts = duration;
     }
 
     public String getName() {
@@ -48,5 +51,13 @@ public class Film {
 
     public void setBasePrice(int basePrice) {
         this.basePrice = basePrice;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 }

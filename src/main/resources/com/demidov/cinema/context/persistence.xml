@@ -14,5 +14,8 @@
         <class>
             com.demidov.cinema.model.entities.Hall
         </class>
+        <class>
+            com.demidov.cinema.model.entities.Session
+        </class>
     </persistence-unit>
 </persistence>
