@@ -19,7 +19,6 @@ public class TestDataLoading {
         loadFilms();
     }
 
-
     public void loadFilms() {
         List<Film> films = filmRepository.findByName("filmFirst");
         if (films.isEmpty()) {

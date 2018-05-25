@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "films")
-public class Film {
+public class Film implements CinemaEntity {
 
     @Id
     @SequenceGenerator(name="films_id_seq", sequenceName="films_id_seq")

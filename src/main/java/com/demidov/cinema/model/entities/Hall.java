@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "halls")
-public class Hall {
+public class Hall implements CinemaEntity {
     @Id
     @SequenceGenerator(name = "halls_id_seq", sequenceName = "halls_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "halls_id_seq")
