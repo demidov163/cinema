@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface FilmRepository extends CrudRepository<Film, Integer> {
     List<Film> findAllByArchived(boolean isArchived);
-    List<Film> findByName(String name);
+    List<Film> findByNameIgnoreCase(String name);
 }

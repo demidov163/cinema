@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @ContextConfiguration(locations = "classpath:com/demidov/cinema/context/model-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,6 +25,7 @@ public class FilmDaoTest {
     private TestDataLoading testDataLoading;
 
     @Before
+    @Transactional
     public void init() {
         testDataLoading.loadAll();
     }
@@ -32,7 +34,7 @@ public class FilmDaoTest {
     @Test
     @Transactional
     @Rollback
-    public void testAddFilm(){
+    public void testAddFilm() {
         Film newFilm = new Film();
         String newFilmName = "Film " + new Date();
         newFilm.setName(newFilmName);
@@ -41,5 +43,12 @@ public class FilmDaoTest {
         Film foundFilm = filmRepository.findOne((save.getId()));
         Assert.assertEquals(newFilmName, foundFilm.getName());
 
+    }
+
+    @Test
+    public void testFindFilmByName() {
+        List<Film> firstfiLm = filmRepository.findByNameIgnoreCase("filmFirst");
+
+        Assert.assertTrue(!firstfiLm.isEmpty());
     }
 }

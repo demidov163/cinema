@@ -20,7 +20,7 @@ public class TestDataLoading {
     }
 
     public void loadFilms() {
-        List<Film> films = filmRepository.findByName("filmFirst");
+        List<Film> films = filmRepository.findByNameIgnoreCase("filmFirst");
         if (films.isEmpty()) {
             Film filmFirst = new Film();
             filmFirst.setName("filmFirst");

@@ -10,6 +10,7 @@ import com.demidov.cinema.service.validators.EntityParametersValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,8 +28,9 @@ public class FilmServiceImpl implements FilmService {
     private EntityParametersValidator<Film> filmEntityParametersValidator;
 
     @Override
+    @Transactional
     public void createFilm(String name, int durationMinutes, int basePrice) throws CinemaProcessModelException {
-        List<Film> byName = filmRepository.findByName(name);
+        List<Film> byName = filmRepository.findByNameIgnoreCase(name);
         if (!byName.isEmpty()) {
             throw new CinemaProcessModelException(String.format("Film with name %s has already created. ", name));
         }
@@ -45,5 +47,16 @@ public class FilmServiceImpl implements FilmService {
         }
 
         filmRepository.save(newFilm);
+    }
+
+    @Override
+    public List<Film> getAllActualFilms() {
+        return filmRepository.findAllByArchived(false);
+    }
+
+    @Override
+    @Transactional
+    public void deleteFilm(Integer id) {
+        filmRepository.delete(id);
     }
 }
