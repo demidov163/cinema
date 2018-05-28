@@ -45,6 +45,17 @@ public class HallServiceImpl implements HallService {
         hallRepository.save(newHall);
     }
 
+    @Override
+    @Transactional
+    public void deleteHall(Integer id) {
+        hallRepository.delete(id);
+    }
+
+    @Override
+    public Hall getHallByHallNumber(Integer hallNumber) {
+        return hallRepository.findByHallNumber(hallNumber);
+    }
+
     private float getPlaceCoefficient(int[][] places) {
         //todo implement coefficient calculation
         return 1;

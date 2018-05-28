@@ -2,8 +2,7 @@ package com.demidov.cinema.test;
 
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
 import com.demidov.cinema.service.HallService;
-import com.demidov.cinema.test.preparation.TestDataLoading;
-import org.junit.Before;
+import com.demidov.cinema.test.preparation.DataLoadingService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +18,7 @@ public class HallServiceTest {
     private HallService hallService;
 
     @Autowired
-    private TestDataLoading testDataLoading;
-
-    @Before
-    @Transactional
-    public void init() {
-        testDataLoading.saveAll();
-    }
+    private DataLoadingService testDataLoading;
 
     @Test(expected = CinemaProcessModelException.class)
     @Transactional

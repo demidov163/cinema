@@ -10,7 +10,7 @@ public class Hall implements CinemaEntity {
     @Id
     @SequenceGenerator(name = "halls_id_seq", sequenceName = "halls_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "halls_id_seq")
-    private Integer id;
+    private int id;
 
     private String name;
 
@@ -19,19 +19,18 @@ public class Hall implements CinemaEntity {
     @Column(name = "hall_number")
     private Integer hallNumber;
 
-/*    @Type( type = "com.demidov.cinema.model.entities.types.IntMatrixArrayType" )
+    @Type( type = "com.demidov.cinema.model.entities.types.IntMatrixArrayType" )
     @Column(
         name = "places",
         columnDefinition = "integer[][]"
-    )*/
-    @Transient  //todo check
+    )
     private Integer[][] places;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

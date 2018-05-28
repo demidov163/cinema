@@ -2,9 +2,8 @@ package com.demidov.cinema.test;
 
 import com.demidov.cinema.model.entities.Film;
 import com.demidov.cinema.model.repositories.FilmRepository;
-import com.demidov.cinema.test.preparation.TestDataLoading;
+import com.demidov.cinema.test.preparation.DataLoadingService;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +22,7 @@ public class FilmDaoTest {
     private FilmRepository filmRepository;
 
     @Autowired
-    private TestDataLoading testDataLoading;
-
-    @Before
-    @Transactional
-    public void init() {
-        testDataLoading.saveAll();
-    }
+    private DataLoadingService testDataLoading;
 
 
     @Test

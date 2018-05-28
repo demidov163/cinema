@@ -1,44 +1,26 @@
 package com.demidov.cinema.test.preparation;
 
-import com.demidov.cinema.exceptions.CinemaProcessModelException;
-import com.demidov.cinema.model.repositories.FilmRepository;
-import com.demidov.cinema.service.FilmService;
-import com.demidov.cinema.service.HallService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-@Transactional
+@ContextConfiguration(locations = "classpath:com/demidov/cinema/context/model-context.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
 public class TestDataLoading {
 
     @Autowired
-    private FilmRepository filmRepository;
+    private DataLoadingService dataLoadingService;
 
-    @Autowired
-    private HallService hallService;
-
-    @Autowired
-    private FilmService filmService;
-
-    public void saveAll(){
-        saveFilms();
-        saveHalls();
+    @Test
+    @Transactional
+    @Rollback(value = false)
+    public void testDataLoading() {
+         dataLoadingService.saveHalls();
     }
 
-    public void saveFilms() {
-        try {
-            filmService.createFilm("filmFirst", 100, 8000);
-        } catch (CinemaProcessModelException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void saveHalls() {
-        try {
-            hallService.createHall(1, new int[][]{{1, 1}, {0, 1}});
-        } catch (CinemaProcessModelException e) {
-            e.printStackTrace();
-        }
-    }
 }
