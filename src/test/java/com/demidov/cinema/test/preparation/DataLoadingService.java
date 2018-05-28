@@ -7,10 +7,8 @@ import com.demidov.cinema.service.FilmService;
 import com.demidov.cinema.service.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class DataLoadingService {
 
     @Autowired
@@ -36,7 +34,7 @@ public class DataLoadingService {
     }
 
     public void saveHalls() {
-        int hallNumber = 1;
+        int hallNumber = 2;
         try {
             Hall hallByHallNumber = hallService.getHallByHallNumber(hallNumber);
             if (hallByHallNumber != null)  {

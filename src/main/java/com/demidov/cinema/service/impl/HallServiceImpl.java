@@ -11,7 +11,6 @@ import com.demidov.cinema.service.validators.EntityParametersValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class HallServiceImpl implements HallService {
@@ -27,7 +26,6 @@ public class HallServiceImpl implements HallService {
     private EntityParametersValidator<Hall> hallEntityParametersValidator;
 
     @Override
-    @Transactional
     public void createHall(int hallNumber, int[][] places) throws CinemaProcessModelException {
 
         Hall newHall = hallFactory.getObject();
@@ -46,7 +44,6 @@ public class HallServiceImpl implements HallService {
     }
 
     @Override
-    @Transactional
     public void deleteHall(Integer id) {
         hallRepository.delete(id);
     }
