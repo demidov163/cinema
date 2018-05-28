@@ -2,6 +2,7 @@ package com.demidov.cinema.test;
 
 import com.demidov.cinema.model.entities.Film;
 import com.demidov.cinema.model.repositories.FilmRepository;
+import com.demidov.cinema.test.preparation.TestDataLoading;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class FilmDaoTest {
     @Before
     @Transactional
     public void init() {
-        testDataLoading.loadAll();
+        testDataLoading.saveAll();
     }
 
 

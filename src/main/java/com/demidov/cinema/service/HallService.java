@@ -3,5 +3,5 @@ package com.demidov.cinema.service;
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
 
 public interface HallService {
-     void createHall(String name, int[][] places) throws CinemaProcessModelException;
+     void createHall(int hallNumber, int[][] places) throws CinemaProcessModelException;
 }

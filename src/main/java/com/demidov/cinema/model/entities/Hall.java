@@ -16,12 +16,15 @@ public class Hall implements CinemaEntity {
 
     private Float placecoeff;
 
-    @Type( type = "com.demidov.cinema.model.entities.types.IntMatrixArrayType" )
+    @Column(name = "hall_number")
+    private Integer hallNumber;
+
+/*    @Type( type = "com.demidov.cinema.model.entities.types.IntMatrixArrayType" )
     @Column(
         name = "places",
         columnDefinition = "integer[][]"
-    )
-
+    )*/
+    @Transient  //todo check
     private Integer[][] places;
 
     public Integer getId() {
@@ -54,5 +57,13 @@ public class Hall implements CinemaEntity {
 
     public void setPlaces(Integer[][] places) {
         this.places = places;
+    }
+
+    public Integer getHallNumber() {
+        return hallNumber;
+    }
+
+    public void setHallNumber(Integer hallNumber) {
+        this.hallNumber = hallNumber;
     }
 }

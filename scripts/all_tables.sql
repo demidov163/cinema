@@ -1,4 +1,4 @@
-drop table sessions;
+﻿drop table sessions;
 drop table films;
 drop table halls;
 --drop type place;
@@ -19,7 +19,8 @@ create table halls(
 id serial primary key,
 name varchar(100),
 placecoeff real,
-places integer[][]
+places integer[][],
+hallNumber integer
 );
 
 create table sessions(

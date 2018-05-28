@@ -1,7 +1,6 @@
 package com.demidov.cinema.service.validators;
 
 
-import com.demidov.cinema.exceptions.CinemaValidateParametersException;
 import com.demidov.cinema.model.entities.Film;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,28 +12,17 @@ import java.util.regex.Pattern;
 
 @Service
 @Qualifier("Film")
-public class FilmValidator implements EntityParametersValidator<Film> {
+public class FilmValidator extends AbstractEntityParameterValidator<Film> {
     //any kind of letter from any language and numbers, space, -, ',
     private static final String FILM_NAME_PATTERN = "^[\\p{L}0-9 .'-]+$";
     private Pattern pattern = Pattern.compile(FILM_NAME_PATTERN);
 
-    @Override
-    public void validateEntityParameters(Film entity) throws CinemaValidateParametersException {
-        StringBuilder errorBuilder = new StringBuilder();
 
+
+    protected void validateActualEntityParameters(Film entity, StringBuilder errorBuilder) {
         checkValidation(errorBuilder, validateName(entity.getName()));
         checkValidation(errorBuilder, validatePrice(entity.getBasePrice()));
         checkValidation(errorBuilder, validateDuration(entity.getDurationMinuts()));
-
-        if (StringUtils.isNotEmpty(errorBuilder)) {
-            throw new CinemaValidateParametersException(errorBuilder.toString());
-        }
-    }
-
-    private void checkValidation(StringBuilder errorBuilder, Optional<String> nameOptional) {
-        if (nameOptional.isPresent()) {
-           errorBuilder.append(nameOptional.get()).append("\n");
-        }
     }
 
     private Optional<String> validateName(String name) {

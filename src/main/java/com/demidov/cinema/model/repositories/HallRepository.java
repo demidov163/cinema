@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface HallRepository extends CrudRepository<Hall, Integer> {
       List<Hall> findByNameIgnoreCase(String name);
+
+      Hall findByHallNumber(Integer hallNumber);
 }

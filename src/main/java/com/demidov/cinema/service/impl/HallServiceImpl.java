@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 public class HallServiceImpl implements HallService {
 
@@ -30,27 +28,29 @@ public class HallServiceImpl implements HallService {
 
     @Override
     @Transactional
-    public void createHall(String name, int[][] places) throws CinemaProcessModelException {
-        List<Hall> foundedHall = hallRepository.findByNameIgnoreCase(name);
-        if (!foundedHall.isEmpty()) {
-            throw new CinemaProcessModelException(String.format("Hall with name %s has already created. ", name));
-        }
+    public void createHall(int hallNumber, int[][] places) throws CinemaProcessModelException {
 
         Hall newHall = hallFactory.getObject();
-        newHall.setName(name);
         newHall.setPlaces(NumbersUtil.matrixConvertToInteger(places));
         newHall.setPlacecoeff(getPlaceCoefficient(places));
-
+        newHall.setHallNumber(hallNumber);
         try {
             hallEntityParametersValidator.validateEntityParameters(newHall);
         } catch (CinemaValidateParametersException e) {
             throw new CinemaProcessModelException(e);
         }
 
+        newHall.setName(generateHallName(newHall));
+
         hallRepository.save(newHall);
     }
 
     private float getPlaceCoefficient(int[][] places) {
+        //todo implement coefficient calculation
         return 1;
+    }
+
+    private String generateHallName(Hall entity) {
+        return String.format("Hall#%d", entity.getHallNumber());
     }
 }

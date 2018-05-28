@@ -1,49 +1,35 @@
 package com.demidov.cinema.test;
 
-
-import com.demidov.cinema.model.entities.Hall;
-import com.demidov.cinema.model.repositories.HallRepository;
+import com.demidov.cinema.exceptions.CinemaProcessModelException;
+import com.demidov.cinema.service.HallService;
 import com.demidov.cinema.test.preparation.TestDataLoading;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-
 @ContextConfiguration(locations = "classpath:com/demidov/cinema/context/model-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class HallDaoTest {
+public class HallServiceTest {
 
     @Autowired
-    private HallRepository hallRepository;
+    private HallService hallService;
 
     @Autowired
     private TestDataLoading testDataLoading;
 
     @Before
-    public void init() {
-         testDataLoading.saveAll();
-    }
-
-    @Test
     @Transactional
-    @Rollback
-    public void testHallSave() {
-        Integer[][] places = {{0, 1}, {1,1}};
-        Hall hall = new Hall();
-        hall.setName("hall " + new Date());
-        hall.setPlacecoeff((float) (3 / 4));
-        hall.setPlaces(places);
-
-        Hall savedHall = hallRepository.save(hall);
-
-        Assert.assertTrue(savedHall.getId() != null);
+    public void init() {
+        testDataLoading.saveAll();
     }
 
+    @Test(expected = CinemaProcessModelException.class)
+    @Transactional
+    public void createHallWithNegativeNumber() throws CinemaProcessModelException {
+        hallService.createHall(-1, new int[][]{{1, 1}, {0, 1}});
+    }
 }
