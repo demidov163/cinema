@@ -7,6 +7,7 @@ import com.demidov.cinema.model.repositories.FilmRepository;
 import com.demidov.cinema.model.repositories.HallRepository;
 import com.demidov.cinema.model.repositories.SessionRepository;
 import com.demidov.cinema.service.model.SessionService;
+import com.demidov.cinema.service.purchase.CinemaPriceCalculationService;
 import com.demidov.cinema.service.validators.EntityParametersValidator;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +36,19 @@ public class SessionServiceImpl implements SessionService {
     @Autowired
     private SessionRepository sessionRepository;
 
+    @Autowired
+    private CinemaPriceCalculationService cinemaPriceCalculationService;
+
 
     @Override
-    public void createSession(Integer filmId, Integer hallId, Date sessionDate, Integer price) throws CinemaProcessModelException {
+    public void createSession(Integer filmId, Integer hallId, Date sessionDate) throws CinemaProcessModelException {
         Session newSession = sessionFactory.getObject();
 
         try {
             newSession.setFilm(filmRepository.findOne(filmId));
             newSession.setHall(hallRepository.findOne(hallId));
             newSession.setDate(sessionDate);
-            newSession.setPrice(price);
+            newSession.setPrice(cinemaPriceCalculationService.calculateSessionPrice(newSession.getFilm().getBasePrice(), sessionDate));
         } catch (Exception e) {
             throw new CinemaProcessModelException(e);
 
@@ -59,6 +63,10 @@ public class SessionServiceImpl implements SessionService {
 
         sessionRepository.save(newSession);
     }
+
+
+
+
 
     @Override
     public Optional<Session> getSessionById(Integer sessionId) {
