@@ -1,7 +1,7 @@
 ﻿drop table sessions;
 drop table films;
 drop table halls;
---drop type place;
+drop table users;
 
 
 
@@ -20,7 +20,7 @@ id serial primary key,
 name varchar(100),
 placecoeff real,
 places integer[][],
-hallNumber integer
+hall_number integer
 );
 
 create table sessions(
@@ -29,4 +29,18 @@ film_id integer references films(id),
 date timestamp,
 hall_id integer references halls(id),
 price integer check(price > 0)
+);
+
+create table users(
+id serial primary key,
+login varchar(100) unique not null,
+password varchar(100),
+birthday timestamp 
+);
+
+create table tickets(
+id serial primary key,
+session_id integer references sessions(id),
+price integer,
+place integer
 );

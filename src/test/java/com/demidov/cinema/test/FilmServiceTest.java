@@ -1,7 +1,7 @@
 package com.demidov.cinema.test;
 
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
-import com.demidov.cinema.service.FilmService;
+import com.demidov.cinema.service.model.FilmService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

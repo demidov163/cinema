@@ -1,10 +1,10 @@
-package com.demidov.cinema.service.impl;
+package com.demidov.cinema.service.model.impl;
 
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
 import com.demidov.cinema.exceptions.CinemaValidateParametersException;
 import com.demidov.cinema.model.entities.Hall;
 import com.demidov.cinema.model.repositories.HallRepository;
-import com.demidov.cinema.service.HallService;
+import com.demidov.cinema.service.model.HallService;
 import com.demidov.cinema.service.util.NumbersUtil;
 import com.demidov.cinema.service.validators.EntityParametersValidator;
 import org.springframework.beans.factory.ObjectFactory;

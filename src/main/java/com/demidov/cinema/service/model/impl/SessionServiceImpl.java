@@ -1,4 +1,4 @@
-package com.demidov.cinema.service.impl;
+package com.demidov.cinema.service.model.impl;
 
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
 import com.demidov.cinema.exceptions.CinemaValidateParametersException;
@@ -6,7 +6,7 @@ import com.demidov.cinema.model.entities.Session;
 import com.demidov.cinema.model.repositories.FilmRepository;
 import com.demidov.cinema.model.repositories.HallRepository;
 import com.demidov.cinema.model.repositories.SessionRepository;
-import com.demidov.cinema.service.SessionService;
+import com.demidov.cinema.service.model.SessionService;
 import com.demidov.cinema.service.validators.EntityParametersValidator;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class SessionServiceImpl implements SessionService {
@@ -58,4 +59,11 @@ public class SessionServiceImpl implements SessionService {
 
         sessionRepository.save(newSession);
     }
+
+    @Override
+    public Optional<Session> getSessionById(Integer sessionId) {
+        return Optional.of(sessionRepository.findOne(sessionId));
+    }
+
+
 }

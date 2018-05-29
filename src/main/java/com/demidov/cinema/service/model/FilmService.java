@@ -1,4 +1,4 @@
-package com.demidov.cinema.service;
+package com.demidov.cinema.service.model;
 
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
 import com.demidov.cinema.model.entities.Film;

@@ -9,6 +9,7 @@ public class Session implements CinemaEntity{
 
     @SequenceGenerator(name = "sessions_id_seq" , sequenceName = "sessions_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sessions_id_seq")
+    @Id
     private Integer id;
 
 

@@ -1,7 +1,7 @@
 package com.demidov.cinema.test;
 
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
-import com.demidov.cinema.service.HallService;
+import com.demidov.cinema.service.model.HallService;
 import com.demidov.cinema.test.preparation.DataLoadingService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
