@@ -18,9 +18,15 @@ public class TestDataLoading {
     @Test
     @Transactional
     @Rollback(value = false)
-    public void testDataLoading() {
+    public void testHallDataLoading() {
          dataLoadingService.saveHalls();
     }
 
+    @Test
+    @Transactional
+    @Rollback(value = false)
+    public void testFilmDataLoading(){
+        dataLoadingService.saveFilms();
+    }
 
 }

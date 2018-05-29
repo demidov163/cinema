@@ -3,10 +3,10 @@ package com.demidov.cinema.service.impl;
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
 import com.demidov.cinema.exceptions.CinemaValidateParametersException;
 import com.demidov.cinema.model.entities.Film;
-import com.demidov.cinema.model.factories.FilmFactory;
 import com.demidov.cinema.model.repositories.FilmRepository;
 import com.demidov.cinema.service.FilmService;
 import com.demidov.cinema.service.validators.EntityParametersValidator;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class FilmServiceImpl implements FilmService {
     private FilmRepository filmRepository;
 
     @Autowired
-    private FilmFactory filmFactory;
+    private ObjectFactory<Film> filmFactory;
 
     @Autowired
     @Qualifier("Film")

@@ -3,11 +3,11 @@ package com.demidov.cinema.service.impl;
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
 import com.demidov.cinema.exceptions.CinemaValidateParametersException;
 import com.demidov.cinema.model.entities.Hall;
-import com.demidov.cinema.model.factories.HallFactory;
 import com.demidov.cinema.model.repositories.HallRepository;
 import com.demidov.cinema.service.HallService;
 import com.demidov.cinema.service.util.NumbersUtil;
 import com.demidov.cinema.service.validators.EntityParametersValidator;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class HallServiceImpl implements HallService {
 
     @Autowired
-    private HallFactory hallFactory;
+    private ObjectFactory<Hall> hallFactory;
 
     @Autowired
     private HallRepository hallRepository;

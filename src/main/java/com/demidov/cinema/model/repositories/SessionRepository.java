@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface SessionRepository extends CrudRepository<Session, Integer> {
-    List<Session> findByDate(Date sessionDate);
+    List<Session> findByDateBetween(Date startSessionDate, Date endSessionDate);
     List<Session> findByFilm(Film film);
+
 }

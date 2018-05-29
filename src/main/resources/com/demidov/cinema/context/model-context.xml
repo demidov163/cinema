@@ -49,6 +49,9 @@
         <property name="jpaDialect" ref="jpaDialect"/>
     </bean>
 
+    <bean class="com.demidov.cinema.model.entities.Film" scope="prototype"/>
+    <bean class="com.demidov.cinema.model.entities.Hall" scope="prototype"/>
+    <bean class="com.demidov.cinema.model.entities.Session" scope="prototype"/>
 
 </beans>
 
