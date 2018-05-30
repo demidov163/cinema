@@ -15,7 +15,9 @@ public class Ticket {
 
     private Integer price;
 
-    private Integer place;
+    private Integer placeRow;
+
+    private Integer placeColumn;
 
     public Integer getId() {
         return id;
@@ -43,11 +45,19 @@ public class Ticket {
         this.price = price;
     }
 
-    public Integer getPlace() {
-        return place;
+    public Integer getPlaceRow() {
+        return placeRow;
     }
 
-    public void setPlace(Integer place) {
-        this.place = place;
+    public void setPlaceRow(Integer place) {
+        this.placeRow = place;
+    }
+
+    public Integer getPlaceColumn() {
+        return placeColumn;
+    }
+
+    public void setPlaceColumn(Integer placeColumn) {
+        this.placeColumn = placeColumn;
     }
 }

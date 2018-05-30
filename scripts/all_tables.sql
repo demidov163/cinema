@@ -2,6 +2,7 @@
 drop table films;
 drop table halls;
 drop table users;
+drop table tickets;
 
 
 
@@ -42,5 +43,6 @@ create table tickets(
 id serial primary key,
 session_id integer references sessions(id),
 price integer,
-place integer
+place_row integer,
+place_column integer
 );

@@ -1,7 +1,7 @@
 package com.demidov.cinema.test;
 
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
-import com.demidov.cinema.service.model.HallService;
+import com.demidov.cinema.service.managemodel.HallService;
 import com.demidov.cinema.test.preparation.DataLoadingService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +23,6 @@ public class HallServiceTest {
     @Test(expected = CinemaProcessModelException.class)
     @Transactional
     public void createHallWithNegativeNumber() throws CinemaProcessModelException {
-        hallService.createHall(-1, new int[][]{{1, 1}, {0, 1}});
+        hallService.createHall(-1, new int[][]{{1, 1}, {0, 1}}, 1.2f);
     }
 }

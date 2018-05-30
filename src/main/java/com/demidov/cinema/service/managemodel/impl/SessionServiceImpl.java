@@ -1,4 +1,4 @@
-package com.demidov.cinema.service.model.impl;
+package com.demidov.cinema.service.managemodel.impl;
 
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
 import com.demidov.cinema.exceptions.CinemaValidateParametersException;
@@ -6,8 +6,8 @@ import com.demidov.cinema.model.entities.Session;
 import com.demidov.cinema.model.repositories.FilmRepository;
 import com.demidov.cinema.model.repositories.HallRepository;
 import com.demidov.cinema.model.repositories.SessionRepository;
-import com.demidov.cinema.service.model.SessionService;
-import com.demidov.cinema.service.purchase.CinemaPriceCalculationService;
+import com.demidov.cinema.service.managemodel.SessionService;
+import com.demidov.cinema.service.purchase.SessionPriceCalculationService;
 import com.demidov.cinema.service.validators.EntityParametersValidator;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class SessionServiceImpl implements SessionService {
     private SessionRepository sessionRepository;
 
     @Autowired
-    private CinemaPriceCalculationService cinemaPriceCalculationService;
+    private SessionPriceCalculationService cinemaPriceCalculationService;
 
 
     @Override
@@ -70,6 +70,7 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public Optional<Session> getSessionById(Integer sessionId) {
+        // TODO: Detach?
         return Optional.of(sessionRepository.findOne(sessionId));
     }
 

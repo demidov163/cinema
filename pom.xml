@@ -78,7 +78,7 @@
 <!--
         <dependency>
             <groupId>demidov-cinema</groupId>
-            <artifactId>demidov-cinema-model</artifactId>
+            <artifactId>demidov-cinema-managemodel</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>-->
         <!--Hibernate-->

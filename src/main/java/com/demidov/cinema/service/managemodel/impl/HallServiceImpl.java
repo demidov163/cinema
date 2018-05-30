@@ -1,10 +1,10 @@
-package com.demidov.cinema.service.model.impl;
+package com.demidov.cinema.service.managemodel.impl;
 
 import com.demidov.cinema.exceptions.CinemaProcessModelException;
 import com.demidov.cinema.exceptions.CinemaValidateParametersException;
 import com.demidov.cinema.model.entities.Hall;
 import com.demidov.cinema.model.repositories.HallRepository;
-import com.demidov.cinema.service.model.HallService;
+import com.demidov.cinema.service.managemodel.HallService;
 import com.demidov.cinema.service.util.NumbersUtil;
 import com.demidov.cinema.service.validators.EntityParametersValidator;
 import org.springframework.beans.factory.ObjectFactory;
@@ -26,11 +26,11 @@ public class HallServiceImpl implements HallService {
     private EntityParametersValidator<Hall> hallEntityParametersValidator;
 
     @Override
-    public void createHall(int hallNumber, int[][] places) throws CinemaProcessModelException {
+    public void createHall(int hallNumber, int[][] places, float placeCoefficient) throws CinemaProcessModelException {
 
         Hall newHall = hallFactory.getObject();
         newHall.setPlaces(NumbersUtil.matrixConvertToInteger(places));
-        newHall.setPlacecoeff(getPlaceCoefficient(places));
+        newHall.setPlacecoeff(placeCoefficient);
         newHall.setHallNumber(hallNumber);
         try {
             hallEntityParametersValidator.validateEntityParameters(newHall);
@@ -50,12 +50,8 @@ public class HallServiceImpl implements HallService {
 
     @Override
     public Hall getHallByHallNumber(Integer hallNumber) {
+        // TODO: Detach?
         return hallRepository.findByHallNumber(hallNumber);
-    }
-
-    private float getPlaceCoefficient(int[][] places) {
-        //todo implement coefficient calculation
-        return 1;
     }
 
     private String generateHallName(Hall entity) {
