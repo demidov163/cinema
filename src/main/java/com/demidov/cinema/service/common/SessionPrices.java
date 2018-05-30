@@ -1,6 +1,6 @@
 package com.demidov.cinema.service.common;
 
-public class SessionPrice {
+public class SessionPrices {
     private int simplePlacePrice;
     private int vipPlacePrice;
 
