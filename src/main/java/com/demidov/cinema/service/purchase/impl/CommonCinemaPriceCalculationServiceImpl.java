@@ -2,6 +2,7 @@ package com.demidov.cinema.service.purchase.impl;
 
 import com.demidov.cinema.exceptions.CinemaPurchaseProcessingException;
 import com.demidov.cinema.model.entities.Session;
+import com.demidov.cinema.service.common.SessionPrice;
 import com.demidov.cinema.service.managemodel.SessionService;
 import com.demidov.cinema.service.purchase.SessionPriceCalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class CommonCinemaPriceCalculationServiceImpl implements SessionPriceCalc
     private SessionService sessionService;
 
     @Override
-    public int calculatePriceBySession(Integer sessionId, boolean isVipPlace) throws CinemaPurchaseProcessingException {
+    public SessionPrice calculatePriceBySession(Integer sessionId) throws CinemaPurchaseProcessingException {
         Optional<Session> sessionById = sessionService.getSessionById(sessionId);
         if (!sessionById.isPresent()) {
             throw new CinemaPurchaseProcessingException(String.format("Session id %d is not valid ", sessionId));
@@ -27,11 +28,10 @@ public class CommonCinemaPriceCalculationServiceImpl implements SessionPriceCalc
 
         Integer price = session.getPrice();
 
-        if (isVipPlace) {
-            price = Math.round(price * session.getHall().getPlacecoeff());
-        }
-
-        return price;
+        SessionPrice sessionPrice = new SessionPrice();
+        sessionPrice.setSimplePlacePrice(price);
+        sessionPrice.setVipPlacePrice(Math.round(price * session.getHall().getPlacecoeff()));
+        return sessionPrice;
     }
 
     @Override

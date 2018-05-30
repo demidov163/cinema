@@ -19,7 +19,7 @@ public class TicketServiceImpl implements TicketService {
     private ObjectFactory<Ticket> ticketFactory;
 
     @Override
-    public void createTicket(Session session, Integer price, Integer placeRow, Integer placeColumn) throws CinemaProcessModelException {
+    public Ticket createTicket(Session session, Integer price, Integer placeRow, Integer placeColumn) throws CinemaProcessModelException {
         Ticket ticketBySessionId = ticketRepository.findByPlaceAndSession_Id(placeRow, session.getId());
         if (ticketBySessionId != null) {
             throw new CinemaProcessModelException(String.format("Ticket for %s film and place %d is sold",
@@ -33,7 +33,6 @@ public class TicketServiceImpl implements TicketService {
 
         // TODO: perform validation
 
-        ticketRepository.save(newTicket);
-
+        return ticketRepository.save(newTicket);
     }
 }

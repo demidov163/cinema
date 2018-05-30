@@ -5,6 +5,7 @@ import com.demidov.cinema.exceptions.CinemaPurchaseProcessingException;
 import com.demidov.cinema.model.entities.Session;
 import com.demidov.cinema.model.entities.Ticket;
 import com.demidov.cinema.service.common.Place;
+import com.demidov.cinema.service.common.SessionPrice;
 import com.demidov.cinema.service.managemodel.SessionService;
 import com.demidov.cinema.service.managemodel.TicketService;
 import com.demidov.cinema.service.purchase.SessionPriceCalculationService;
@@ -12,6 +13,7 @@ import com.demidov.cinema.service.purchase.PurchaseTicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +26,7 @@ public class PurchaseTicketServiceImpl implements PurchaseTicketService {
     @Autowired
     private TicketService ticketService;
 
+    @Autowired
     private SessionPriceCalculationService priceCalculator;
 
 
@@ -34,17 +37,20 @@ public class PurchaseTicketServiceImpl implements PurchaseTicketService {
             throw new CinemaPurchaseProcessingException(String.format("No such session id - %d", sessionId));
         }
 
+        List<Ticket> tickets = new ArrayList<>(places.size());
         Integer[][] hallPlaces = session.get().getHall().getPlaces();
+        SessionPrice sessionPrice = priceCalculator.calculatePriceBySession(sessionId);
         for (Place place : places) {
-            int commonPrice = priceCalculator.calculatePriceBySession(sessionId, isVipPlace(hallPlaces, place));
             try {
-                ticketService.createTicket(session.get(), commonPrice, place.getRow(), place.getColumn());
+                tickets.add(ticketService.createTicket(session.get(),
+                        isVipPlace(hallPlaces, place) ? sessionPrice.getVipPlacePrice() : sessionPrice.getSimplePlacePrice(),
+                        place.getRow(), place.getColumn()));
             } catch (CinemaProcessModelException e) {
                 throw new CinemaPurchaseProcessingException(e);
             }
         }
 
-        return null;
+        return tickets;
     }
 
     private boolean isVipPlace(Integer[][] hallPlaces, Place place) {
