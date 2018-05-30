@@ -5,7 +5,7 @@ import com.demidov.cinema.exceptions.CinemaPurchaseProcessingException;
 import com.demidov.cinema.model.entities.Session;
 import com.demidov.cinema.model.entities.Ticket;
 import com.demidov.cinema.service.common.Place;
-import com.demidov.cinema.service.common.SessionPrice;
+import com.demidov.cinema.service.common.SessionPrices;
 import com.demidov.cinema.service.managemodel.SessionService;
 import com.demidov.cinema.service.managemodel.TicketService;
 import com.demidov.cinema.service.purchase.SessionPriceCalculationService;
@@ -39,7 +39,7 @@ public class PurchaseTicketServiceImpl implements PurchaseTicketService {
 
         List<Ticket> tickets = new ArrayList<>(places.size());
         Integer[][] hallPlaces = session.get().getHall().getPlaces();
-        SessionPrice sessionPrice = priceCalculator.calculatePriceBySession(sessionId);
+        SessionPrices sessionPrice = priceCalculator.calculatePlacePricesBySession(sessionId);
         for (Place place : places) {
             try {
                 tickets.add(ticketService.createTicket(session.get(),
