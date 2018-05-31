@@ -31,7 +31,7 @@ public class PurchaseTicketServiceImpl implements PurchaseTicketService {
 
 
     @Override
-    public List<Ticket> purchaseTickets(int sessionId, List<Place> places) throws CinemaPurchaseProcessingException {
+    public List<Ticket> purchaseTickets(Integer userId, int sessionId, List<Place> places) throws CinemaPurchaseProcessingException {
         Optional<Session> session = sessionService.getSessionById(sessionId);
         if (!session.isPresent()) {
             throw new CinemaPurchaseProcessingException(String.format("No such session id - %d", sessionId));

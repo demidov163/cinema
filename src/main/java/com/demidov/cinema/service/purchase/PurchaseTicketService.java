@@ -7,5 +7,5 @@ import com.demidov.cinema.service.common.Place;
 import java.util.List;
 
 public interface PurchaseTicketService {
-     List<Ticket> purchaseTickets(int sessionId, List<Place> places) throws CinemaPurchaseProcessingException;
+     List<Ticket> purchaseTickets(Integer userId, int sessionId, List<Place> places) throws CinemaPurchaseProcessingException;
 }
