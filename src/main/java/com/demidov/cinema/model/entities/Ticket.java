@@ -4,19 +4,23 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tickets")
-public class Ticket {
+public class Ticket implements CinemaEntity {
 
     @Id
     @SequenceGenerator(name = "tickets_id_seq" , sequenceName = "tickets_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tickets_id_seq")
     private Integer id;
 
+    @JoinColumn(name = "session_id")
+    @ManyToOne(targetEntity = Session.class)
     private Session session;
 
     private Integer price;
 
+    @Column(name = "place_row")
     private Integer placeRow;
 
+    @Column(name = "place_column")
     private Integer placeColumn;
 
     public Integer getId() {
@@ -27,8 +31,6 @@ public class Ticket {
         this.id = id;
     }
 
-    @JoinColumn(name = "session_id")
-    @ManyToOne
     public Session getSession() {
         return session;
     }

@@ -1,5 +1,7 @@
 package com.demidov.cinema.model.entities;
 
-public interface CinemaEntity {
+import java.io.Serializable;
+
+public interface CinemaEntity extends Serializable {
 
 }

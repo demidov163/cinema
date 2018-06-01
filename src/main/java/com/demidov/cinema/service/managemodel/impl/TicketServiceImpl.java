@@ -20,7 +20,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket createTicket(Session session, Integer price, Integer placeRow, Integer placeColumn) throws CinemaProcessModelException {
-        Ticket ticketBySessionId = ticketRepository.findByPlaceAndSession_Id(placeRow, session.getId());
+        Ticket ticketBySessionId = ticketRepository.findByPlaceRowAndPlaceColumnAndSession_Id(placeRow, placeColumn, session.getId());
         if (ticketBySessionId != null) {
             throw new CinemaProcessModelException(String.format("Ticket for %s film and place %d is sold",
                     session.getFilm().getName(), placeRow));

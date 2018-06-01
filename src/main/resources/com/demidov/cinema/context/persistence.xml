@@ -17,5 +17,11 @@
         <class>
             com.demidov.cinema.model.entities.Session
         </class>
+        <class>
+            com.demidov.cinema.model.entities.Ticket
+        </class>
+        <class>
+            com.demidov.cinema.model.entities.User
+        </class>
     </persistence-unit>
 </persistence>

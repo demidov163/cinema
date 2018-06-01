@@ -8,5 +8,5 @@ import java.util.List;
 public interface TicketRepository extends CrudRepository<Ticket, Integer> {
     List<Ticket> findBySession_Id(Integer Id);
 
-    Ticket findByPlaceAndSession_Id(Integer place, Integer Id);
+    Ticket findByPlaceRowAndPlaceColumnAndSession_Id(Integer placeRow, Integer placeColumn, Integer Id);
 }

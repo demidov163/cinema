@@ -52,6 +52,7 @@
     <bean class="com.demidov.cinema.model.entities.Film" scope="prototype"/>
     <bean class="com.demidov.cinema.model.entities.Hall" scope="prototype"/>
     <bean class="com.demidov.cinema.model.entities.Session" scope="prototype"/>
+    <bean class="com.demidov.cinema.model.entities.Ticket" scope="prototype"/>
 
 </beans>
 

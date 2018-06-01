@@ -16,7 +16,7 @@ public class User {
 
     private String password;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
 
     public Integer getId() {
