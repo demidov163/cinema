@@ -1,8 +1,8 @@
-﻿drop table sessions;
+﻿drop table tickets;
+drop table sessions;
 drop table films;
 drop table halls;
 drop table users;
-drop table tickets;
 
 
 
