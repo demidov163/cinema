@@ -4,6 +4,7 @@ import com.demidov.cinema.model.entities.Film;
 import com.demidov.cinema.model.repositories.FilmRepository;
 import com.demidov.cinema.test.preparation.DataLoadingService;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 
 @ContextConfiguration(locations = "classpath:com/demidov/cinema/context/model-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,6 +25,11 @@ public class FilmDaoTest {
     @Autowired
     private DataLoadingService testDataLoading;
 
+    @Rollback(value = false)
+    @Before
+    public void init() {
+        testDataLoading.saveFilms();
+    }
 
     @Test
     @Transactional
@@ -41,8 +47,9 @@ public class FilmDaoTest {
 
     @Test
     public void testFindFilmByName() {
-        List<Film> firstfiLm = filmRepository.findByNameIgnoreCase("filmFirst");
+        Optional<Film> firstfiLm = filmRepository.findAllByArchived(false).
+                stream().filter(film -> film.getName().startsWith("filmFirst")).findAny();
 
-        Assert.assertTrue(!firstfiLm.isEmpty());
+        Assert.assertTrue(firstfiLm.isPresent());
     }
 }
