@@ -1,7 +1,8 @@
 package com.demidov.cinema.test;
 
-import com.demidov.cinema.exceptions.CinemaProcessModelException;
-import com.demidov.cinema.service.managemodel.FilmService;
+import com.demidov.cinema.impl.exceptions.CinemaProcessModelException;
+import com.demidov.cinema.impl.service.managemodel.FilmService;
+import com.demidov.cinema.test.context.TestConfig;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +11,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-@ContextConfiguration(locations = "classpath:com/demidov/cinema/context/model-context.xml")
+@ContextConfiguration(classes={TestConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FilmServiceTest {
 

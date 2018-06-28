@@ -1,8 +1,9 @@
 package com.demidov.cinema.test;
 
 
-import com.demidov.cinema.model.entities.Hall;
-import com.demidov.cinema.model.repositories.HallRepository;
+import com.demidov.cinema.impl.model.entities.Hall;
+import com.demidov.cinema.impl.model.repositories.HallRepository;
+import com.demidov.cinema.test.context.TestConfig;
 import com.demidov.cinema.test.preparation.DataLoadingService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-@ContextConfiguration(locations = "classpath:com/demidov/cinema/context/model-context.xml")
+@ContextConfiguration(classes={TestConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class HallDaoTest {
 

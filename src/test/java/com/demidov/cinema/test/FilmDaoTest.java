@@ -1,7 +1,8 @@
 package com.demidov.cinema.test;
 
-import com.demidov.cinema.model.entities.Film;
-import com.demidov.cinema.model.repositories.FilmRepository;
+import com.demidov.cinema.impl.model.entities.Film;
+import com.demidov.cinema.impl.model.repositories.FilmRepository;
+import com.demidov.cinema.test.context.TestConfig;
 import com.demidov.cinema.test.preparation.DataLoadingService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.Optional;
 
-@ContextConfiguration(locations = "classpath:com/demidov/cinema/context/model-context.xml")
+@ContextConfiguration(classes={TestConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FilmDaoTest {
     @Autowired

@@ -1,7 +1,8 @@
 package com.demidov.cinema.test;
 
-import com.demidov.cinema.exceptions.CinemaProcessModelException;
-import com.demidov.cinema.service.managemodel.HallService;
+import com.demidov.cinema.impl.exceptions.CinemaProcessModelException;
+import com.demidov.cinema.impl.service.managemodel.HallService;
+import com.demidov.cinema.test.context.TestConfig;
 import com.demidov.cinema.test.preparation.DataLoadingService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-@ContextConfiguration(locations = "classpath:com/demidov/cinema/context/model-context.xml")
+@ContextConfiguration(classes={TestConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class HallServiceTest {
 
@@ -23,6 +24,6 @@ public class HallServiceTest {
     @Test(expected = CinemaProcessModelException.class)
     @Transactional
     public void createHallWithNegativeNumber() throws CinemaProcessModelException {
-        hallService.createHall(-1, new int[][]{{1, 1}, {0, 1}}, 1.2f);
+        hallService.createHall("", -1, new int[][]{{1, 1}, {0, 1}});
     }
 }

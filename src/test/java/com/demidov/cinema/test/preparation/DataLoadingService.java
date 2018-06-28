@@ -1,10 +1,10 @@
 package com.demidov.cinema.test.preparation;
 
-import com.demidov.cinema.exceptions.CinemaProcessModelException;
-import com.demidov.cinema.model.entities.Film;
-import com.demidov.cinema.model.entities.Hall;
-import com.demidov.cinema.service.managemodel.FilmService;
-import com.demidov.cinema.service.managemodel.HallService;
+import com.demidov.cinema.impl.exceptions.CinemaProcessModelException;
+import com.demidov.cinema.impl.model.entities.Film;
+import com.demidov.cinema.impl.model.entities.Hall;
+import com.demidov.cinema.impl.service.managemodel.FilmService;
+import com.demidov.cinema.impl.service.managemodel.HallService;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,7 +53,7 @@ public class DataLoadingService {
             if (hallByHallNumber != null)  {
                 hallService.deleteHall(hallByHallNumber.getId());
             }
-            hallService.createHall(hallNumber, new int[][]{{1, 1}, {0, 1}}, 1.2f);
+            hallService.createHall("Hall #" + hallNumber, hallNumber, new int[][]{{1, 1}, {0, 1}});
         } catch (CinemaProcessModelException e) {
             e.printStackTrace();
         }
