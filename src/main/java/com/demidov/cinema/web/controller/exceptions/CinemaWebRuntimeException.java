@@ -5,4 +5,8 @@ public class CinemaWebRuntimeException extends RuntimeException {
     public CinemaWebRuntimeException(Exception ex) {
         super(ex);
     }
+
+    public CinemaWebRuntimeException(String message) {
+        super(message);
+    }
 }

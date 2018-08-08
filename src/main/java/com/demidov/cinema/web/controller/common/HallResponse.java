@@ -1,13 +1,14 @@
 package com.demidov.cinema.web.controller.common;
 
 public class HallResponse {
-    private boolean success;
 
-    public boolean isSuccess() {
-        return success;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

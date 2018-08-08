@@ -1,7 +1,6 @@
 package com.demidov.cinema.web.controller.common;
 
-
-public class FilmResponse {
+public class SessionResponse {
 
     private Integer id;
 
